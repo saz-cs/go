@@ -93,15 +93,15 @@ func main() {
 	}
 
 	// For loop can be written like while loop in c/c++
-	fmt.Println("For loop written like while")
+	fmt.Println("\nFor loop written like while:")
 	fi := 1
 	for fi <= 5 {
-		fmt.Println(fi, " ")
+		fmt.Print(fi, " ")
 		fi++
 	}
 
 	// break and continue in loops
-	fmt.Println("Usage of break and continue in loop")
+	fmt.Println("\nUsage of break and continue in loop")
 	for i := 1; i <= 10; i++ {
 
 		// continue is used to skip the matched condition and continue the control flow
@@ -118,4 +118,86 @@ func main() {
 
 		fmt.Println("Printed:", i)
 	}
+
+	/* Arrays */
+	fmt.Println("Arrays:")
+
+	// Array initialization
+	var arr [3]int = [3]int{10, 20, 30}
+	namesArr := [3]string{"Alice", "Bob", "Eve"} //Cryptography pun
+	elipsesArr := [...]int{10, 20, 30}
+
+	fmt.Println("arr:", arr)
+	fmt.Println("anotherArr:", namesArr)
+	fmt.Println("elipsesArr:", elipsesArr)
+
+	// Length of an array = Capacity of an array
+	fmt.Println("Array arr length:", len(arr))
+	fmt.Println("Capacity arr length:", cap(arr))
+
+	// Looping through an array
+
+	// normal way
+	fmt.Println("Interating through an array in normal way:")
+	for i := 0; i < len(namesArr); i++ {
+		fmt.Println(namesArr[i])
+	}
+
+	// for loop in python type syntax
+	fmt.Println("Interating through an array in for-each way:")
+	for index, element := range namesArr {
+		fmt.Println(index, "->", element)
+	}
+
+	// MultiDimensional array (remember arrays are 0 indexed)
+	mulArr := [4][2]int{{1, 1}, {2, 2}, {3, 3}, {4, 4}}
+
+	/*
+		This array looks like this
+		0	[1 , 1]
+		1	[2 , 2]
+		2	[3 , 3]
+		3	[4 , 4]
+			 0   1
+	*/
+
+	fmt.Println("value at mulArr[0][1]:", mulArr[0][1])
+
+	/* Slices */
+	fmt.Println("Slices:")
+
+	// Slice initialization
+
+	// Appears like dynamic array
+	slc := []int{10, 20, 30}
+	fmt.Println(slc)
+
+	// Slices are sliced arrays ( like Python slicing)
+	fmt.Println("Sliced array:")
+	bigArr := [10]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	slc_1 := bigArr[:5]
+	fmt.Println(slc_1)
+
+	// using make function
+	slc_2 := make([]int, 5, 10)
+	fmt.Println("Slice using make:")
+	fmt.Println(slc_2)
+
+	// In slices,len = no of occupied elements in slice, cap = total capacity of slice
+	fmt.Println("slice length:", len(slc_2))
+	fmt.Println("slice capacity:", cap(slc_2))
+
+	// In arrays, len = cap
+	checkArr := [10]int{1, 2, 3, 4, 5}
+	fmt.Println(checkArr)
+	fmt.Println("array length:", len(checkArr))
+	fmt.Println("array capacity:", cap(checkArr))
+
+	// Appending slices
+	firstSlc := bigArr[0:3]               // indexes 0,1,2   = 3 elements
+	secSlc := bigArr[4:8]                 // indexes 4,5,6,7 = 4 elements
+	appSlc := append(firstSlc, secSlc...) // the second slice gets '...' if appending two slices
+	fmt.Println("Appended slices:", appSlc)
+	fmt.Println(len(appSlc)) // len => 3 + 4 = 7
+	fmt.Println(cap(appSlc)) // cap => I don't know man, I gave up on slices
 }
