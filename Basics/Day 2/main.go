@@ -200,4 +200,44 @@ func main() {
 	fmt.Println("Appended slices:", appSlc)
 	fmt.Println(len(appSlc)) // len => 3 + 4 = 7
 	fmt.Println(cap(appSlc)) // cap => I don't know man, I gave up on slices
+
+	/* Maps */
+
+	// Map initialization
+	mp := map[string]string{"en": "English", "fr": "French"}
+	fmt.Println("Map:", mp)
+
+	// empty map initialization
+	mk := make(map[string]int)
+	fmt.Println("Make makes empty map:", mk)
+
+	// value and found/not is returned
+	value, found := mp["en"]
+	fmt.Println("Map contains", value, ":", found)
+
+	// adding key-value to map
+	mp["es"] = "Hindi"
+	fmt.Println("After adding a new element to map:", mp)
+
+	// might have observed maps are sorted and doesn't have duplicated values as keys are unique
+
+	// updating key-value in map
+	mp["es"] = "Espanol"
+	fmt.Println("After updating:", mp)
+
+	// deleting key-value from map
+	delete(mp, "es")
+	fmt.Println("After deleting:", mp)
+
+	// iterating over map
+	fmt.Println("Iterating over map:")
+	for key, value := range mp { // similar to index,value in arrays & slices
+		fmt.Println(key, "->", value)
+	}
+
+	// truncating a map
+	fmt.Println("Truncating a map:")
+	mp = make(map[string]string) // assigned empty map using make
+	fmt.Println(mp)
+
 }
