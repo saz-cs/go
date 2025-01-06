@@ -69,6 +69,16 @@ func modifyStruct(s *Student) {
 	s.name = "BoB"
 }
 
+/* Methods */
+
+// Method declaration
+func (s Student) print() {
+	fmt.Println("Name:", s.name)
+	fmt.Println("Roll No:", s.rollNo)
+	fmt.Println("Marks:", s.marks)
+	fmt.Println("Grades:", s.grades)
+}
+
 // Main function
 func main() {
 	user := "Saz"
@@ -184,5 +194,11 @@ func main() {
 	// modifying the struct
 	modifyStruct(&student2)
 	fmt.Printf("After modifying Student2:\n %+v\n", student2) // Alice is now Bob
+
+	/* Methods */
+	fmt.Println("Methods:")
+
+	// Printing student struct using method
+	student1.print()
 
 }
