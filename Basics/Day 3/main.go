@@ -79,6 +79,22 @@ func (s Student) print() {
 	fmt.Println("Grades:", s.grades)
 }
 
+/* Interfaces */
+
+// Interface declaration
+type StudentMethods interface {
+	getPercent() float64
+}
+
+// Method which implements the interface
+func (s Student) getPercent() float64 {
+	var total int
+	for _, mark := range s.marks {
+		total += mark
+	}
+	return float64(total) / float64(len(s.marks))
+}
+
 // Main function
 func main() {
 	user := "Saz"
@@ -201,4 +217,10 @@ func main() {
 	// Printing student struct using method
 	student1.print()
 
+	/* Interfaces */
+	fmt.Println("Interfaces:")
+
+	// methods which implement the interface
+	percentage := student1.getPercent()
+	fmt.Println("Percentage of student1:", percentage)
 }
