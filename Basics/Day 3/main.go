@@ -49,6 +49,11 @@ func printResult(name string, f func(string) string) {
 	fmt.Println("Inside higher order function:", f(name))
 }
 
+// Call by reference function
+func modify(s *string) {
+	*s = "BoB!"
+}
+
 // Main function
 func main() {
 	user := "Saz"
@@ -79,6 +84,7 @@ func main() {
 	}
 	// defer delays the execution of the function until the surrounding function returns
 	defer fmt.Println("Area using function expression:", area(10, 20))
+	defer fmt.Println("\nThis is caused by defer")
 
 	// anonymous function
 	func(s string) {
@@ -87,4 +93,41 @@ func main() {
 
 	// calling higher order function
 	printResult("Bob", greet)
+
+	/* Pointers */
+	fmt.Println("Pointers:")
+	i := 10
+	fmt.Printf("%T %v\n", &i, &i)       // & operator returns the address of the variable
+	fmt.Printf("%T %v\n", *(&i), *(&i)) // * operator returns the value of the variable
+
+	// declaring a pointer variable
+	var p *int
+	fmt.Printf("Pointer p: Type %T value %v\n", p, p) // nil
+
+	// initializing a pointer variable
+	p = &i // storing the address of i in p
+	fmt.Printf("After initializing Pointer p: Type %T value %v\n", p, p)
+	fmt.Printf("Dereferencing pointer p: Type %T value %v\n", *p, *p)
+
+	// another way of initializing a pointer variable
+	someName := "Charlie"
+	ptr := &someName
+	fmt.Printf("Pointer ptr: Type %T value %v\n", ptr, ptr)
+	fmt.Printf("Dereferencing pointer ptr: Type %T value %v\n", *ptr, *ptr)
+
+	// Dereferencing a pointer
+	s := "Hello"
+	fmt.Printf("%T %v\n", s, s)
+	ps := &s
+	// changing the value of the variable using pointer
+	*ps = "world"
+	fmt.Printf("%T %v\n", s, s)
+
+	// Pass by reference
+	fmt.Println("Passing by reference:")
+	nameVar := "Alice"
+	fmt.Println("Before passing by reference:", nameVar)
+	// Passing the address instead of the value
+	modify(&nameVar)
+	fmt.Println("After passing by reference:", nameVar)
 }
