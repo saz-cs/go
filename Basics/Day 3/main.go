@@ -54,6 +54,21 @@ func modify(s *string) {
 	*s = "BoB!"
 }
 
+/* Struct */
+
+// Struct declaration// declaring a struct
+type Student struct {
+	name   string
+	rollNo int
+	marks  []int
+	grades map[string]string
+}
+
+// Call by reference function to modify struct
+func modifyStruct(s *Student) {
+	s.name = "BoB"
+}
+
 // Main function
 func main() {
 	user := "Saz"
@@ -130,4 +145,44 @@ func main() {
 	// Passing the address instead of the value
 	modify(&nameVar)
 	fmt.Println("After passing by reference:", nameVar)
+
+	/* Structs */
+	fmt.Println("Structs:")
+
+	// I have declared struct before main function
+
+	// initializing a struct
+	student1 := new(Student)
+	// dot operator is used to access the fields
+	student1.name = "Zack"
+	student1.rollNo = 1
+	student1.marks = []int{100, 99}
+	student1.grades = map[string]string{"Maths": "A", "Science": "A"}
+
+	// printing the struct
+	fmt.Printf("Student1:\n %+v\n", student1)
+
+	// other way of initializing a struct
+	student2 := Student{"Alice", 2, []int{99, 99}, map[string]string{"Maths": "A", "Science": "A"}}
+
+	// or
+	student2 = Student{
+		name:   "Alice",
+		rollNo: 2,
+		marks:  []int{99, 99},
+		grades: map[string]string{
+			"Maths":   "A",
+			"Science": "A",
+		},
+	}
+
+	// printing the struct
+	fmt.Printf("Student2:\n %+v\n", student2)
+
+	// struct needs to be passed by reference if we want to modify it
+
+	// modifying the struct
+	modifyStruct(&student2)
+	fmt.Printf("After modifying Student2:\n %+v\n", student2) // Alice is now Bob
+
 }
